@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  singular:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: singular-website
+    restart: unless-stopped
+    networks:
+      - traefik-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.singular.rule=Host(`singular.${DOMAIN}`)"
+      - "traefik.http.routers.singular.entrypoints=websecure"
+      - "traefik.http.routers.singular.tls=true"
+      - "traefik.http.services.singular.loadbalancer.server.port=80"
+      - "traefik.docker.network=traefik-network"
+
+networks:
+  traefik-network:
+    external: true
