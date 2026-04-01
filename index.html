@@ -19,6 +19,13 @@
             <a href="#author">AUTHOR</a>
             <a href="#buy">BUY</a>
         </div>
+        <button class="email-icon-btn" id="email-icon-btn" onclick="openInbox()" title="Inbox">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span class="email-badge" id="email-badge">0</span>
+        </button>
     </nav>
 
     <header class="hero">
@@ -143,5 +150,43 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/emails.js"></script>
+
+    <!-- Email Inbox Modal -->
+    <div class="email-modal" id="email-modal">
+        <div class="email-modal-inner">
+            <div class="email-sidebar">
+                <div class="email-sidebar-header">
+                    <div class="email-sidebar-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        INBOX
+                    </div>
+                    <button class="email-close-btn" onclick="closeInbox()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="email-filters">
+                    <button class="email-filter-btn active" data-filter="all" onclick="setEmailFilter('all')">All</button>
+                    <button class="email-filter-btn" data-filter="unread" onclick="setEmailFilter('unread')">Unread</button>
+                    <button class="email-filter-btn" data-filter="starred" onclick="setEmailFilter('starred')">★ Starred</button>
+                </div>
+                <div class="email-list" id="email-list">
+                    <!-- Emails render here -->
+                </div>
+            </div>
+            <div class="email-content" id="email-view">
+                <div class="email-view-empty">
+                    <div class="email-view-empty-icon">📬</div>
+                    <div class="email-view-empty-text">Select a message to read</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
