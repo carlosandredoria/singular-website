@@ -104,7 +104,11 @@ function loadPosts() {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', loadPosts);
+document.addEventListener('DOMContentLoaded', () => {
+    loadPosts();
+    // Init email badge
+    if (typeof updateUnreadBadge === 'function') updateUnreadBadge();
+});
 
 // Update date display
 document.addEventListener('DOMContentLoaded', () => {
